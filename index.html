@@ -3,120 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <title>Hugo May</title>
-  <meta name="viewport" content="width=1024">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body {
-      font-family: serif;
+    :root {
+      --side-padding: 10rem;
+      --body-top-pad: 2rem;        /* the gap above both heading and image */
+    }
+
+    /* RESET & BOX-SIZING */
+    *,*::before,*::after {
+      box-sizing: border-box;
       margin: 0;
-      padding: 0 1.5rem 2rem 1.5rem;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      line-height: 1.6;
+      color: #222;
       background: #fff;
+      padding: var(--body-top-pad) var(--side-padding);
     }
-    .container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      max-width: 100vw;
-      margin-top: 2rem;
-    }
-    .main {
-      max-width: 60vw;
-      min-width: 340px;
-    }
+
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      margin-top: 0;
-      font-family: serif;
+      margin-bottom: 1rem;
+      font-weight: bold;
     }
     h2 {
       font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 0.7rem;
-    }
-    b, strong {
+      margin: 2rem 0 1rem;
       font-weight: bold;
     }
-    .img-block {
-      background: #c7eafd;
-      border-radius: 1rem;
-      padding: 2rem 1rem 1.5rem 1rem;
-      margin-left: 3rem;
-      margin-top: 0;
+    p + p { margin-top: 1rem; }
+    ul { margin: 1rem 0; padding-left: 1.4em; }
+    li + li { margin-top: 0.5rem; }
+
+    /* LAYOUT: TWO COLUMNS */
+    .columns {
       display: flex;
+      gap: 2rem;
       align-items: flex-start;
+    }
+
+    /* TEXT */
+    .main {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    /* IMAGE: STICKY & WHITE BACKGROUND */
+    .image-column {
+      flex: 1;
+    }
+    .image-container {
+      position: sticky;
+      top: var(--body-top-pad);               /* aligns with h1 top */
+      height: calc(100vh - var(--body-top-pad));
+      background: #fff;                       /* pure white */
+      padding: 0;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      min-width: 430px;
-      max-width: 45vw;
-      max-height: 90vh;
-      min-height: 430px;
     }
-    .img-block img {
-      max-width: 400px;
+    .image-container img {
       width: 100%;
-      border-radius: 0.7rem;
-      margin: 0;
+      height: auto;
+      display: block;
+      border: none !important;                /* kill any default border */
+      outline: none !important;
+      box-shadow: none !important;
+      object-fit: contain;
     }
-    ul {
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    li {
-      margin-bottom: 0.3rem;
-    }
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
+
+    /* MOBILE: STACK BELOW TEXT */
+    @media (max-width: 800px) {
+      body { padding: var(--body-top-pad) 2rem; }
+      .columns { flex-direction: column; }
+      .image-container {
+        position: static;
+        height: auto;
       }
-      .img-block {
-        margin-left: 0;
-        margin-top: 2rem;
-        min-width: 0;
-        max-width: 100vw;
+      .image-container img {
+        width: 100%;
+        height: auto;
       }
-      .main {
-        max-width: 98vw;
-      }
+      .main { max-width: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <h1>Hugo May</h1>
+
+  <div class="columns">
+
+    <!-- Text Column -->
     <div class="main">
-      <h1>Hugo May</h1>
       <p>Hi, welcome to my page.</p>
-      <p>
-        My name is Hugo and I was born in South Africa. I am fascinated by how blockchain technology, economics and systems engineering intersect.
-      </p>
-      <p>
-        My work is focused on solving cryptoeconomics problems. That range from those that projects face when designing cryptoeconomies/tokens and how professional investors develop value accrual frameworks for investing in tokens.
-      </p>
-      <p>
-        Personal interests include Grand Strategy, Game Theory and the extraordinary abilities, but also limitations, of human beings.
-        <strong>Why are we here, and why are we here together?</strong>
-      </p>
+      <p>My name is Hugo and I was born in South Africa. I am fascinated by how blockchain technology, economics and systems engineering intersect.</p>
+      <p>My work is focused on solving cryptoeconomics problems. That range from those that projects face when designing cryptoeconomies/tokens and how professional investors develop value accrual frameworks for investing in tokens.</p>
+      <p>Personal interests include Grand Strategy, Game Theory and the extraordinary abilities, but also limitations, of human beings. <strong>Why are we here, and why are we here together?</strong></p>
 
-      <h2>Lemma Solutions – My job</h2>
-      <p>
-        A Cayman-based consultancy and service provider that helps clients solve the complexities of launching a token. I am responsible for leading engagements that require cryptoeconomics research, token design and go-to-market strategies.
-      </p>
+      <h2><a href="https://www.lemma.solutions/" target="_blank" rel="noopener">Lemma Solutions</a> – My job</h2>
+      <p>A Cayman‑based consultancy and service provider that helps clients solve the complexities of launching a token. I am responsible for leading engagements that require cryptoeconomics research, token design and go‑to‑market strategies.</p>
 
-      <h2>Just Cryptoeconomics – My project</h2>
-      <p>
-        We started the project to help the industry make better decisions that relate to tokens, whether it is designing or investing. Just Cryptoeconomics is an open-access repository of ideas and frameworks. Our product is the Token Fundamentals dashboard, an analytics tool that helps investors develop a view of the fundamental drivers behind a token’s value.
-      </p>
+      <h2><a href="https://justcryptoeconomics.com/" target="_blank" rel="noopener">Just Cryptoeconomics</a> – My project</h2>
+      <p>We started the project to help the industry make better decisions that relate to tokens, whether it is designing or investing. Just Cryptoeconomics is an open‑access repository of ideas and frameworks. Our product is the <a href="https://app.justcryptoeconomics.com/" target="_blank" rel="noopener">Token Fundamentals Dashboard</a>, an analytics tool that helps investors develop a view of the fundamental drivers behind a token’s value.</p>
 
       <h2>Advisory engagements</h2>
       <ul>
         <li><strong>Lima Capital</strong> – Alternative asset manager that serve traditional pools of capital.</li>
-        <li><strong>Etherbridge</strong> – Long-only crypto hedge fund.</li>
-        <li><strong>Stackr</strong> – Open a tax optimal Bermudan trust account in 5 min that offers Swiss Bank custody for crypto, allows diversification into traditional financial assets.</li>
+        <li><strong>Etherbridge</strong> – Long‑only crypto hedge fund.</li>
+        <li><strong>Stackr</strong> – Open a tax‑optimal Bermudan trust account in 5 min that offers Swiss Bank custody for crypto, allows diversification into traditional financial assets.</li>
       </ul>
 
       <h2>Previous Positions</h2>
       <ul>
         <li><strong>Polkastarter</strong> – Head of Research</li>
-        <li><strong>Smith + Crown</strong> – Cryptoeconomics Researcher</li>
+        <li><a href="https://www.smithandcrown.com/" target="_blank" rel="noopener">Smith + Crown</a> – Cryptoeconomics Researcher</li>
         <li><strong>Invictus Capital</strong> – Blockchain Investment Analyst</li>
       </ul>
 
@@ -129,9 +134,14 @@
         <li>Algorithmic Game Theory</li>
       </ul>
     </div>
-    <div class="img-block">
-      <img src="art.png" alt="Artwork">
+
+    <!-- Image Column -->
+    <div class="image-column">
+      <div class="image-container">
+        <img src="art.png" alt="Artwork">
+      </div>
     </div>
+
   </div>
 </body>
 </html>
