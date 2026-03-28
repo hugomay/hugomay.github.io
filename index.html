@@ -4,135 +4,379 @@
   <meta charset="UTF-8">
   <title>Hugo May</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Hugo May — Cryptoeconomics, token design, and investment consulting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --side-padding: 10rem;
-      --body-top-pad: 2rem;        /* the gap above both heading and image */
+      --bg: #0b0b0f;
+      --bg-card: #13131a;
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #fafafa;
+      --accent: #a1a1aa;
+      --border: #1e1e2a;
+      --side-padding: 8rem;
+      --nav-height: 3.5rem;
     }
 
-    /* RESET & BOX-SIZING */
     *,*::before,*::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 2rem);
+    }
+
     body {
-      font-family: Georgia, serif;
-      line-height: 1.6;
-      color: #222;
-      background: #fff;
-      padding: var(--body-top-pad) var(--side-padding);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      font-weight: bold;
-    }
-    h2 {
-      font-size: 1.3rem;
-      margin: 2rem 0 1rem;
-      font-weight: bold;
-    }
-    p + p { margin-top: 1rem; }
-    ul { margin: 1rem 0; padding-left: 1.4em; }
-    li + li { margin-top: 0.5rem; }
-
-    /* LAYOUT: TWO COLUMNS */
-    .columns {
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 11, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
       display: flex;
-      gap: 2rem;
-      align-items: flex-start;
+      align-items: center;
+      padding: 0 var(--side-padding);
+    }
+    nav .nav-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-bright);
+      letter-spacing: 0.02em;
+      margin-right: auto;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text-bright); }
+
+    /* LAYOUT */
+    .page {
+      display: flex;
+      min-height: calc(100vh - var(--nav-height));
     }
 
-    /* TEXT */
-    .main {
+    .content {
       flex: 1;
-      max-width: 600px;
+      max-width: 640px;
+      padding: 4rem var(--side-padding) 6rem;
     }
 
-    /* IMAGE: STICKY & WHITE BACKGROUND */
     .image-column {
       flex: 1;
+      position: relative;
     }
     .image-container {
       position: sticky;
-      top: var(--body-top-pad);               /* aligns with h1 top */
-      height: calc(100vh - var(--body-top-pad));
-      background: #fff;                       /* pure white */
-      padding: 0;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 2rem;
     }
     .image-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: none !important;                /* kill any default border */
-      outline: none !important;
-      box-shadow: none !important;
+      max-width: 100%;
+      max-height: 85vh;
       object-fit: contain;
+      display: block;
+      opacity: 0.9;
     }
 
-    /* MOBILE: STACK BELOW TEXT */
-    @media (max-width: 800px) {
-      body { padding: var(--body-top-pad) 2rem; }
-      .columns { flex-direction: column; }
+    /* TYPOGRAPHY */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .tagline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-top: 3.5rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .lead {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .lead strong {
+      color: var(--text-bright);
+      font-weight: 500;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover { text-decoration-color: var(--text-muted); }
+
+    /* ENGAGEMENT CARDS */
+    .engagement {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .engagement:first-of-type { padding-top: 0; }
+    .engagement:last-of-type { border-bottom: none; }
+    .engagement .label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-bright);
+      margin-bottom: 0.3rem;
+    }
+    .engagement .desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ROLE LIST */
+    .role {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .role:last-of-type { border-bottom: none; }
+    .role .org {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .role .title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* BOOK LIST */
+    .books {
+      list-style: none;
+      padding: 0;
+    }
+    .books li {
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .books li:last-child { border-bottom: none; }
+
+    /* CONTACT / LINKS */
+    .links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .links a:hover { color: var(--text-bright); }
+    .links a::before {
+      content: '→ ';
+      opacity: 0.4;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      :root { --side-padding: 1.5rem; }
+      nav { padding: 0 1.5rem; }
+      .page { flex-direction: column; }
+      .image-column { order: -1; }
       .image-container {
         position: static;
         height: auto;
+        padding: 2rem 1.5rem;
       }
       .image-container img {
-        width: 100%;
-        height: auto;
+        max-height: 40vh;
       }
-      .main { max-width: none; }
+      .content {
+        max-width: none;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .role { flex-direction: column; gap: 0.1rem; }
+      .role .title { text-align: left; }
+      nav a { margin-left: 1rem; font-size: 0.7rem; }
+    }
+
+    @media (max-width: 500px) {
+      nav .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Hugo May</h1>
+  <nav>
+    <span class="nav-name">Hugo May</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#advisory">Advisory</a>
+      <a href="#investments">Investments</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <div class="columns">
+  <div class="page">
 
-    <!-- Text Column -->
-    <div class="main">
-      <p>Hi, welcome to my page.</p>
-      <p>My name is Hugo and I was born in South Africa. I am fascinated by how blockchain technology, economics and systems engineering intersect.</p>
-      <p>My work is focused on solving cryptoeconomics problems. That range from those that projects face when designing cryptoeconomies/tokens and how professional investors develop value accrual frameworks for investing in tokens.</p>
-      <p>My interests include systems theory, grand strategy and most things that look at huan coordination. <strong>Why are we here, and why are we here together?</strong></p>
+    <div class="content">
 
-      <h2><a href="https://www.lemma.solutions/" target="_blank" rel="noopener">Lemma Solutions</a> – My job</h2>
-      <p>A Cayman‑based consultancy and service provider that helps clients solve the complexities of launching a token. I am responsible for leading engagements that require cryptoeconomics research, token design and go‑to‑market strategies.</p>
+      <!-- ABOUT -->
+      <section id="about">
+        <h1>Hugo May</h1>
+        <p class="tagline">Cryptoeconomics &middot; Token Design &middot; Investment Consulting</p>
 
-      <h2><a href="https://justcryptoeconomics.com/" target="_blank" rel="noopener">Just Cryptoeconomics</a> – My project</h2>
-      <p>We started the project to help the industry make better decisions that relate to tokens, whether it is designing or investing. Just Cryptoeconomics is an open‑access repository of ideas and frameworks. Our product is the <a href="https://app.justcryptoeconomics.com/" target="_blank" rel="noopener">Token Fundamentals Dashboard</a>, an analytics tool that helps investors develop a view of the fundamental drivers behind a token’s value.</p>
+        <p class="lead">I am fascinated by how economic systems shape human coordination. Why are we here, and why are we here together?</p>
 
-      <h2>Advisory engagements</h2>
-      <ul>
-        <li><strong>Lima Capital</strong> – Alternative asset manager that serve traditional pools of capital.</li>
-        <li><strong>Etherbridge</strong> – Long‑only crypto hedge fund.</li>
-        <li><strong>Stackr</strong> – Open a tax‑optimal Bermudan trust account in 5 min that offers Swiss Bank custody for crypto, allows diversification into traditional financial assets.</li>
-      </ul>
+        <p>That question drives my work. I solve cryptoeconomics problems for protocols and institutional investors — the kind that sit at the intersection of mechanism design, market strategy, and governance. Token economies, incentive structures, value accrual frameworks.</p>
 
+        <p>I have worked as a researcher, investor, advisor, and builder. That range gives me a perspective most specialists lack: I understand what protocols need to ship, what investors need to underwrite, and where the two fail to communicate.</p>
+      </section>
+
+      <!-- CRYPTO ADVISORY -->
+      <section id="advisory">
+        <h2>Crypto Advisory</h2>
+
+        <p>I lead strategic consulting engagements for protocols and investors through <a href="https://www.lemma.solutions/" target="_blank" rel="noopener">Lemma Solutions</a>, a Cayman-based consultancy. Selected work includes:</p>
+
+        <div class="engagement">
+          <div class="label">Governance system design</div>
+          <div class="desc">Designed the governance framework for a top-5 interoperability protocol.</div>
+        </div>
+        <div class="engagement">
+          <div class="label">Grants program architecture</div>
+          <div class="desc">Designed the grants program system for the largest Bitcoin Layer 2.</div>
+        </div>
+        <div class="engagement">
+          <div class="label">Go-to-market strategy</div>
+          <div class="desc">Developed launch and market entry strategy for an early-stage protocol.</div>
+        </div>
+        <div class="engagement">
+          <div class="label">Regulatory compliance</div>
+          <div class="desc">Led MiCA whitepaper development for a decentralized data storage solution serving AI agents.</div>
+        </div>
+      </section>
+
+      <!-- INVESTMENT CONSULTING -->
+      <section id="investments">
+        <h2>Investment Consulting</h2>
+
+        <p>I serve on regulated investment committees in Mauritius, with oversight responsibilities spanning traditional multi-asset mandates, wealth advisory, and crypto fund structures.</p>
+
+        <div class="engagement">
+          <div class="label">Multi-asset mandates</div>
+          <div class="desc">Oversight of large-scale traditional portfolios with approximately $800M in linked mandates.</div>
+        </div>
+        <div class="engagement">
+          <div class="label">Wealth advisory</div>
+          <div class="desc">Committee oversight across $40M in wealth advisory mandates.</div>
+        </div>
+        <div class="engagement">
+          <div class="label">Cross-border investment management</div>
+          <div class="desc">Broader Mauritius–Singapore investment management activity covering approximately $1.3B.</div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2>Research</h2>
+
+        <div class="engagement">
+          <div class="label"><a href="https://justcryptoeconomics.com/" target="_blank" rel="noopener">Just Cryptoeconomics</a></div>
+          <div class="desc">I founded Just Cryptoeconomics to help the industry make better decisions around tokens — whether designing or investing. It is an open-access repository of ideas and frameworks. The <a href="https://app.justcryptoeconomics.com/" target="_blank" rel="noopener">Token Fundamentals Dashboard</a> is our analytics product, built to surface the fundamental drivers behind a token's value.</div>
+        </div>
+      </section>
+
+      <!-- PREVIOUS POSITIONS -->
       <h2>Previous Positions</h2>
-      <ul>
-        <li><strong>Polkastarter</strong> – Head of Research</li>
-        <li><a href="https://www.smithandcrown.com/" target="_blank" rel="noopener">Smith + Crown</a> – Cryptoeconomics Researcher</li>
-        <li><strong>Invictus Capital</strong> – Blockchain Investment Analyst</li>
-      </ul>
 
-      <h2>My favourite books</h2>
-      <ul>
+      <div class="role">
+        <span class="org">Polkastarter</span>
+        <span class="title">Head of Research</span>
+      </div>
+      <div class="role">
+        <span class="org"><a href="https://www.smithandcrown.com/" target="_blank" rel="noopener">Smith + Crown</a></span>
+        <span class="title">Cryptoeconomics Researcher</span>
+      </div>
+      <div class="role">
+        <span class="org">Invictus Capital</span>
+        <span class="title">Blockchain Investment Analyst</span>
+      </div>
+
+      <!-- BOOKS -->
+      <h2>Books</h2>
+      <ul class="books">
         <li>Thinking Fast and Slow</li>
         <li>Black Swan &amp; Antifragile</li>
-        <li>The Creature of Jekyll Island</li>
+        <li>The Creature from Jekyll Island</li>
         <li>Thinking in Systems</li>
         <li>Algorithmic Game Theory</li>
       </ul>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="links">
+          <a href="https://t.me/hm_analyst" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://x.com/blockbanzai" target="_blank" rel="noopener">X</a>
+          <a href="https://linkedin.com/in/hugo-may-110991a6" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://justcryptoeconomics.com/" target="_blank" rel="noopener">Just Cryptoeconomics</a>
+        </div>
+      </section>
+
     </div>
 
     <!-- Image Column -->
@@ -143,5 +387,6 @@
     </div>
 
   </div>
+
 </body>
 </html>
